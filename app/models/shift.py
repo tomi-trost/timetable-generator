@@ -1,11 +1,13 @@
 ﻿class Shift():
 
-    def __init__(self, index):
+    def __init__(self, index: int):
         self.index = index
 
-    def getIndex(self):
-        """Getter method for the shift index"""
-        return self.index
+    def __eq__(self, other):
+        if not isinstance(other, Shift):
+            return False
+        return other.index == self.index
+    
     
 
 class ShiftPool():

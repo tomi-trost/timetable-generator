@@ -1,5 +1,5 @@
-﻿from models.day import Day
-from models.shift import Shift
+﻿from app.models.day import Day
+from app.models.shift import Shift
 
 class TimeSlot:
 
@@ -7,3 +7,7 @@ class TimeSlot:
         self.day = day
         self.shift = shift
 
+    def __eq__(self, other):
+        if not isinstance(other, TimeSlot):
+            return False
+        return self.day == other.day and self.shift == other.shift

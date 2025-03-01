@@ -1,5 +1,5 @@
-﻿from app.models.day import Day
-from app.models.shift import Shift
+﻿from app.models.timeslot.day import Day
+from app.models.timeslot.shift import Shift
 
 class TimeSlot:
 

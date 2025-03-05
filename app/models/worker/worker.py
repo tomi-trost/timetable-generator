@@ -22,16 +22,17 @@ class Worker:
         """Returns a clone of the Worker object"""
         return copy.deepcopy(self)
     
-    def assign(self, timeslot: TimeSlot) -> bool:
+    def assign(self, timeslot: TimeSlot) -> None:
         """Assigns a timeslot to the Worker"""
-        if (not self.availability.is_active()):
+        if (not self.availability.is_active(timeslot)):
             raise Exception("The Worker isn't available for this timeslot.")
         self.assigned.put(timeslot)
         self.availability.free(timeslot)
+        
 
     def free(self, timeslot: TimeSlot) -> None:
         """Frees the Worker from a timeslot"""
-        if (not self.assign.is_active()):
+        if (not self.assign.is_active(timeslot)):
             raise Exception("The Worker is not assigned to this timeslot.")
         self.assigned.free(timeslot)
         self.availability.put(timeslot)

@@ -1,6 +1,7 @@
 ﻿class Shift():
 
     def __init__(self, index: int):
+        """Index starts with 0 and ends with number of shifts minus 1"""
         self.index = index
 
     def __eq__(self, other):

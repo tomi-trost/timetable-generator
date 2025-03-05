@@ -1,7 +1,6 @@
 ﻿from abc import ABC, abstractmethod
 
 from app.models.timeslot.timeslot import TimeSlot
-from app.models.timeslot.day import Day
 
 
 class TimeSlotMatrix(ABC):
@@ -19,4 +18,4 @@ class TimeSlotMatrix(ABC):
     @abstractmethod
     def _getMatrixIndex(timeslot: TimeSlot) -> tuple[int, int]:
         """Convert a timeslot object into the correct slot in the matrix"""
-        return (Day.get_index(timeslot.day), timeslot.shift.index)
+        pass

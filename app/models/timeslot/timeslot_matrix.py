@@ -8,7 +8,7 @@ class TimeSlotMatrix(ABC):
 
     @abstractmethod
     def put(timeslot: TimeSlot, x) -> None:
-        """Method to insert an element into the matrix"""
+        """Insert an element into the matrix"""
         pass
 
     @abstractmethod
@@ -19,5 +19,4 @@ class TimeSlotMatrix(ABC):
     @abstractmethod
     def _getMatrixIndex(timeslot: TimeSlot) -> tuple[int, int]:
         """Convert a timeslot object into the correct slot in the matrix"""
-        
         return (Day.get_index(timeslot.day), timeslot.shift.index)

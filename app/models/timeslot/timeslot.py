@@ -1,9 +1,9 @@
 ﻿from app.models.timeslot.day import Day
-from app.models.timeslot.shift import Shift
+from app.models.timeslot.shift import ShiftPool
 
 class TimeSlot:
 
-    def __init__(self, day: Day, shift: Shift):
+    def __init__(self, day: Day, shift: ShiftPool._Shift):
         self.day = day
         self.shift = shift
 

@@ -7,9 +7,32 @@ from app.models.timeslot.day import Day
 from models.worker.worker import Worker
 
 class TimeSlotMatrixBinary(TimeSlotMatrix):
+    """
+    A binary matrix representation for time slots.
+
+    This class represents a time slot matrix where each cell contains a binary value 
+    (0 or 1), indicating whether a specific time slot is occupied or available.
+
+    Attributes:
+        matrix (numpy.ndarray): A 2D array representing the time slot matrix.
+        days (int): The number of days represented in the matrix.
+        shifts (int): The number of shifts per day.
+    """
 
     def __init__(self, days: int , shifts: int):
+        """
+        Initializes a TimeSlotMatrixBinary object.
+
+        Args:
+            days (int): The number of days.
+            shifts (int): The number of shifts per day.
+
+        The matrix is initialized as a 2D NumPy array filled with zeros.
+        """
         self.matrix = np.zeros((days, shifts))
+        self.days = days
+        self.shifts = shifts
+
 
     def put(self, timeslot: TimeSlot):
         """Lables a timeslot as available"""
@@ -28,6 +51,10 @@ class TimeSlotMatrixBinary(TimeSlotMatrix):
     def is_active(self, timeslot: TimeSlot) -> bool:
         """Returns the state of the timeslot"""
         return bool(self._getTimeSlotContent(timeslot))
+    
+    def get_dimensions(self) -> tuple[int, int]:
+        """Returns the dimentions of the TimeSlot matrix in (days, shifts)"""
+        return (self.days, self.shifts)
     
     def _getTimeSlotContent(self, timeslot: TimeSlot) -> set[Worker]:
         """Get a Worker set of the timeslot matrix"""

@@ -4,7 +4,6 @@ from models.timeslot.timeslot_matrix import TimeSlotMatrix
 from models.timeslot.timeslot import TimeSlot
 from app.models.timeslot.day import Day
 
-from models.worker.worker import Worker
 
 class TimeSlotMatrixBinary(TimeSlotMatrix):
     """
@@ -56,7 +55,7 @@ class TimeSlotMatrixBinary(TimeSlotMatrix):
         """Returns the dimens"ions of the TimeSlot matrix in (days, shifts)"""
         return (self.days, self.shifts)
     
-    def _getTimeSlotContent(self, timeslot: TimeSlot) -> set[Worker]:
+    def _getTimeSlotContent(self, timeslot: TimeSlot) -> int:
         """Get a Worker set of the timeslot matrix"""
         ts_index = self._getMatrixIndex(timeslot)
         return self.matrix[ts_index]

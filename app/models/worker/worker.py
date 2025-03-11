@@ -66,13 +66,15 @@ class Worker:
     def assign(self, timeslot: TimeSlot) -> None:
         """Assigns a timeslot to the Worker"""
         if (not self.availability.is_active(timeslot)):
-            raise Exception("The Worker isn't available for this timeslot.")
+            raise ValueError("The Worker isn't available for this timeslot.")
+        if (self.assigned.is_active(timeslot)):
+            raise ValueError("The worker was already assigned this timeslot.")
         self.assigned.put(timeslot)
         self.availability.free(timeslot) 
 
     def free(self, timeslot: TimeSlot) -> None:
         """Frees the Worker from a timeslot"""
-        if (not self.assign.is_active(timeslot)):
+        if (not self.assigned.is_active(timeslot)):
             raise Exception("The Worker is not assigned to this timeslot.")
         self.assigned.free(timeslot)
         self.availability.put(timeslot)

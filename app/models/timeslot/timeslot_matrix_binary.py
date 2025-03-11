@@ -53,7 +53,7 @@ class TimeSlotMatrixBinary(TimeSlotMatrix):
         return bool(self._getTimeSlotContent(timeslot))
     
     def get_dimensions(self) -> tuple[int, int]:
-        """Returns the dimentions of the TimeSlot matrix in (days, shifts)"""
+        """Returns the dimens"ions of the TimeSlot matrix in (days, shifts)"""
         return (self.days, self.shifts)
     
     def _getTimeSlotContent(self, timeslot: TimeSlot) -> set[Worker]:

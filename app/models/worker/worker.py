@@ -4,9 +4,30 @@ from models.timeslot.timeslot import TimeSlot
 from models.timeslot.timeslot_matrix_binary import TimeSlotMatrixBinary
 
 class Worker:
+    """
+    Representation of a worker.
+
+    This class represents a worker and keeps track of workers assigned timeslots as well as
+    all of the time slots the user is available for.
+
+    Attributes:
+        availability (TimeSlotMatrixBinary): A binary matrix indicating the time slots the worker is available for.
+        assigned (TimeSlotMatrixBinary): A binary matrix indicating the time slots that have been assigned to the worker.
+        availability_range (tuple[int, int]): Minimum and maximum number of timeslots a worker wants to be assigned.
+    """
 
     class AvailabilityRange:
-        
+        """
+        Representation of time slot quantity the worker preferes to be assigned for.
+
+        This is a private class to Worker class that represents what minumum and maximum number of time slots
+        the worker would be assigned.
+
+        Attributes: 
+            min (int): Minimum number of time slots a worker would like to work for.
+            max (int): Maximum number of time slots a worker would like to work for.
+        """
+    
         def __init__(self, min: int, max: int):
             self.min = min
             self.max = max
@@ -14,12 +35,20 @@ class Worker:
     def __init__(
         self,
         availability: TimeSlotMatrixBinary,
-        assigned: TimeSlotMatrixBinary,
-        availability_range: 'Worker.AvailabilityRange'
+        availability_range: tuple[int, int]
     ) -> None:
+        """
+        Initializes a Worker object.
+
+        Args:
+            availability (TimeSlotMatrixBinary): Time slots for which the worker is available.
+            availability_range (tuple[int, int]): Minimum and maximum number of timeslots a worker wants to be assigned.
+
+        Assigned matrix is generated based on the dimensions of the availability matrix.
+        """
         self.availability = availability
-        self.assigned = assigned
-        self.availability_range = availability_range
+        self.assigned = TimeSlotMatrixBinary(availability.get_dimensions())
+        self.availability_range = Worker.AvailabilityRange(availability_range)
     
     @property
     def cnt(self) -> int:

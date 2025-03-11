@@ -34,10 +34,11 @@ class WorkerScheduleMatrix(TimeSlotMatrix):
         matrix_timeslot = self._getTimeSlotContent(timeslot)
         return worker in matrix_timeslot
     
-    def _getMatrixIndex(self, timeslot: TimeSlot) -> tuple[int, int]:
-        return Day.get_index(timeslot.day), timeslot.shift.index
-    
     def _getTimeSlotContent(self, timeslot: TimeSlot) -> set[Worker]:
         """Get a Worker set of the timeslot matrix"""
         ts_index = self._getMatrixIndex(timeslot)
         return self.matrix[ts_index]
+    
+    def _getMatrixIndex(self, timeslot: TimeSlot) -> tuple[int, int]:
+        return Day.get_index(timeslot.day), timeslot.shift.index
+    

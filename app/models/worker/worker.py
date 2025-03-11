@@ -29,6 +29,8 @@ class Worker:
         """
     
         def __init__(self, min: int, max: int):
+            if min > max:
+                raise ValueError("Argument min should be smaller or equal to argument max.")
             self.min = min
             self.max = max
 

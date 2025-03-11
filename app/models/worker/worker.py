@@ -51,8 +51,8 @@ class Worker:
         if availability_range[1] > availability.count():
             raise ValueError("Worker wants to work for more time slots, than he/she is available for. Availablity range should be within bounds of availibilities.")
         self.availability = availability
-        self.assigned = TimeSlotMatrixBinary(availability.get_dimensions())
-        self.availability_range = Worker.AvailabilityRange(availability_range)
+        self.assigned = TimeSlotMatrixBinary(*availability.get_dimensions())
+        self.availability_range = Worker.AvailabilityRange(*availability_range)
     
     @property
     def cnt(self) -> int:

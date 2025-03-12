@@ -5,7 +5,7 @@ from models.timeslot.timeslot import TimeSlot
 from app.models.timeslot.day import Day
 
 
-class TimeSlotMatrixBinary(TimeSlotMatrix):
+class TimeSlotMatrixResource(TimeSlotMatrix):
     """
     An integer matrix representation for time slots.
 

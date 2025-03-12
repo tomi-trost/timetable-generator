@@ -48,15 +48,15 @@ class TimeSlotMatrixBinary(TimeSlotMatrix):
         return self.matrix.sum()
     
     def is_active(self, timeslot: TimeSlot) -> bool:
-        """Returns the state of the timeslot"""
+        """Returns True if time slot is active and False if not"""
         return bool(self._getTimeSlotContent(timeslot))
     
     def get_dimensions(self) -> tuple[int, int]:
-        """Returns the dimens"ions of the TimeSlot matrix in (days, shifts)"""
+        """Returns the dimensions of the TimeSlot matrix in (days, shifts)"""
         return (self.days, self.shifts)
     
     def _getTimeSlotContent(self, timeslot: TimeSlot) -> int:
-        """Get a Worker set of the timeslot matrix"""
+        """Get availability value (0|1)"""
         ts_index = self._getMatrixIndex(timeslot)
         return self.matrix[ts_index]
     

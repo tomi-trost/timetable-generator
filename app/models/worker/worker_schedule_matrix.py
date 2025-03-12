@@ -1,6 +1,6 @@
 ﻿import numpy as np
 
-from models.timeslot.timeslot_matrix import TimeSlotMatrix
+from models.timeslot_matrix.timeslot_matrix import TimeSlotMatrix
 from models.timeslot.timeslot import TimeSlot
 from models.timeslot.day import Day
 

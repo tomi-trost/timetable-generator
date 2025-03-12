@@ -3,7 +3,7 @@
 from models.worker.worker import Worker
 from models.worker.worker_schedule_matrix import WorkerScheduleMatrix
 
-from models.timeslot.timeslot_matrix_binary import TimeSlotMatrixBinary
+from models.timeslot_matrix.timeslot_matrix_binary import TimeSlotMatrixBinary
 from models.timeslot.timeslot import TimeSlot
 from models.timeslot.day import Day
 from models.timeslot.shift import ShiftPool

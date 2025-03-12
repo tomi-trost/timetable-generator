@@ -1,7 +1,7 @@
 ﻿import copy
 
 from models.timeslot.timeslot import TimeSlot
-from models.timeslot.timeslot_matrix_binary import TimeSlotMatrixBinary
+from models.timeslot_matrix.timeslot_matrix_binary import TimeSlotMatrixBinary
 
 class Worker:
     """

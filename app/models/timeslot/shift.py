@@ -26,3 +26,7 @@ class ShiftPool():
         if index not in range(self.shift_number):
             raise Exception(f"Shift with index value={index} does not exist.")
         return self._Shift(index)
+    
+    def exists(self, shift: int) -> bool:
+        """Returns True if index exists in this shift pool"""
+        return shift in range(self.shift_number)

@@ -45,7 +45,7 @@ class TimeTable:
     
     def is_solvable(self) -> bool:
         """Checks if demands for the time table can be met by the worker pool"""
-        return self.worker_supply >= self.worker_demand
+        return (self.worker_supply.matrix >= self.worker_demand.matrix).all()
 
     def clone(self) -> 'TimeTable':
         """Returns a clone of the TimeTable object"""
@@ -54,7 +54,7 @@ class TimeTable:
     def assign(self, worker: Worker, timeslot: TimeSlot) -> None:
         """Assigns a worker to a time timeslot"""
         self._validate_worker(worker)
-        self._validate_worker_assigned(worker, timeslot)
+        self._validate_worker_not_assigned(worker, timeslot)
         self._validate_timeslot_demand(timeslot)
         self.worker_schedule.put(worker, timeslot)
 
@@ -69,10 +69,16 @@ class TimeTable:
         if worker not in self.worker_pool.get_workers():
             raise ValueError("Worker is not a part of this worker pool")
 
-    def _validate_worker_assigned(self, worker: Worker, timeslot: TimeSlot) -> None:
-        """Checks if the worker is assigned to the timeslot"""
+    def _validate_worker_not_assigned(self, worker: Worker, timeslot: TimeSlot) -> None:
+        """Raises error if worker is assigned to the timeslot"""
         if self.worker_schedule.is_assigned(worker, timeslot):
             raise ValueError("Worker is already assigned to this timeslot")
+
+    
+    def _validate_worker_assigned(self, worker: Worker, timeslot: TimeSlot) -> None:
+        """Raises error if worker is not assigned to the timeslot"""
+        if not self.worker_schedule.is_assigned(worker, timeslot):
+            raise ValueError("Worker is not assigned to this timeslot")
 
     def _validate_timeslot_demand(self, timeslot: TimeSlot) -> None:
         """Checks if there is active demand for the timeslot"""

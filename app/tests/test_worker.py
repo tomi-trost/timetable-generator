@@ -33,7 +33,7 @@ def test_worker_schedule_matrix():
     TIMESLOT_MATRIX_DIMENSIONS = (7, 2)
 
     availability_matrix, shift_pool, timeslots = generate_availability_matrix(*TIMESLOT_MATRIX_DIMENSIONS)
-    worker = Worker(availability_matrix, availability_range=(1, 2))
+    worker = Worker(name='Janez Novak', availability=availability_matrix, availability_range=(1, 2))
 
     worker.assign(timeslots[0])
     
@@ -48,15 +48,15 @@ def test_worker():
 
     availability_matrix, shift_pool, timeslots = generate_availability_matrix(7, 2)
 
-    worker1 = Worker(availability=availability_matrix, availability_range=(1, 2))
+    worker = Worker(name='Janez Novak', availability=availability_matrix, availability_range=(1, 2))
 
-    worker1.assign(timeslot=timeslots[0])
-    worker1.assign(timeslot=timeslots[1])
+    worker.assign(timeslot=timeslots[0])
+    worker.assign(timeslot=timeslots[1])
 
-    assert worker1.cnt == 2
+    assert worker.cnt == 2
 
     with pytest.raises(ValueError, match="The Worker isn't available for this timeslot."):
-        worker1.assign(timeslot=TimeSlot(Day.FRI, shift_pool.get_shift(1)))
+        worker.assign(timeslot=TimeSlot(Day.FRI, shift_pool.get_shift(1)))
     
 
 def generate_availability_matrix(days: int, shifts: int) -> TimeSlotMatrixBinary:

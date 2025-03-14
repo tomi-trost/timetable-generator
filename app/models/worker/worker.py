@@ -91,7 +91,7 @@ class Worker:
         return self.availability.is_active(timeslot)
     
     def __eq__(self, other) -> bool:
-        if not isinstance(other, 'Worker'):
+        if not isinstance(other, Worker):
             return False
         return self.name == other.name
     

@@ -36,6 +36,7 @@ class Worker:
 
     def __init__(
         self,
+        name: str,
         availability: TimeSlotMatrixBinary,
         availability_range: tuple[int, int]
     ) -> None:
@@ -43,6 +44,7 @@ class Worker:
         Initializes a Worker object.
 
         Args:
+            name (str): Worker's name
             availability (TimeSlotMatrixBinary): Time slots for which the worker is available.
             availability_range (tuple[int, int]): Minimum and maximum number of timeslots a worker wants to be assigned.
 
@@ -50,6 +52,7 @@ class Worker:
         """
         if availability_range[1] > availability.count():
             raise ValueError("Worker wants to work for more time slots, than he/she is available for. Availablity range should be within bounds of availibilities.")
+        self._name = name
         self.availability = availability
         self.assigned = TimeSlotMatrixBinary(*availability.get_dimensions())
         self.availability_range = Worker.AvailabilityRange(*availability_range)
@@ -59,6 +62,10 @@ class Worker:
         """Computed property that gets count from assigned matrix"""
         return self.assigned.count()
     
+    @property
+    def name(self) -> str:
+        return self._name
+
     def clone(self) -> 'Worker':
         """Returns a clone of the Worker object"""
         return copy.deepcopy(self)
@@ -83,3 +90,10 @@ class Worker:
         """Checks if Worker is available for a timeslot"""
         return self.availability.is_active(timeslot)
     
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, 'Worker'):
+            return False
+        return self.name == other.name
+    
+    def __hash__(self) -> int:
+        return hash(self.name)

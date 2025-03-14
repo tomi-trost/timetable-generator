@@ -19,10 +19,16 @@ class WorkerPool:
 
     def add_worker(self, worker: Worker) -> None:
         """Adds a worker to the WorkerPool set"""
+        if worker in self.workers:
+            raise ValueError("A worker is already in the worker pool.")
         self.workers.add(worker)
 
     def get_supply_matrix(self) -> np.ndarray:
         """Returns a resource matrix for all of the workers"""
         worker_availabilities = [worker.availability for worker in self.workers]
         return np.sum(worker_availabilities, axis=0)
-
+    
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, WorkerPool):
+            return False
+        return self.workers == other.workers

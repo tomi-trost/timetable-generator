@@ -1,5 +1,8 @@
-﻿from models.worker.worker import Worker
+﻿import numpy as np
+
+from models.worker.worker import Worker
 from models.timeslot.timeslot import TimeSlot
+from models.timeslot_matrix.timeslot_matrix_resources import TimeSlotMatrixResources
 
 class WorkerPool:
 
@@ -14,7 +17,12 @@ class WorkerPool:
         """Returns a set of workers, that are available on some timeslot"""
         return {worker for worker in self.workers if worker.is_available(timeslot)}
 
-    def push_worker(self, worker: Worker) -> None:
+    def add_worker(self, worker: Worker) -> None:
         """Adds a worker to the WorkerPool set"""
         self.workers.add(worker)
+
+    def get_supply_matrix(self) -> np.ndarray:
+        """Returns a resource matrix for all of the workers"""
+        worker_availabilities = [worker.availability for worker in self.workers]
+        return np.sum(worker_availabilities, axis=0)
 

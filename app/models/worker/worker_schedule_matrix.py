@@ -42,3 +42,7 @@ class WorkerScheduleMatrix(TimeSlotMatrix):
     def _getMatrixIndex(self, timeslot: TimeSlot) -> tuple[int, int]:
         return Day.get_index(timeslot.day), timeslot.shift.index
     
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, 'WorkerScheduleMatrix'):
+            return False
+        np.array_equal(self.matrix, other.matrix)

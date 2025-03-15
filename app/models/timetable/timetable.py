@@ -1,4 +1,5 @@
 ﻿import copy
+import numpy as np
 
 from app.models.timeslot_matrix.timeslot_matrix_resources import TimeSlotMatrixResources
 
@@ -46,6 +47,12 @@ class TimeTable:
     def is_solvable(self) -> bool:
         """Checks if demands for the time table can be met by the worker pool"""
         return (self.worker_supply.matrix >= self.worker_demand.matrix).all()
+    
+    def get_shortage(self) -> TimeSlotMatrixResources:
+        """Returns a TimeslotMatrixResource object representing the shortage of worker supply to meet the demand"""
+        shortage = (self.worker_demand.matrix - self.worker_supply.matrix)
+        shortage[shortage < 0] = 0 # Only consideres positive values
+        return TimeSlotMatrixResources(matrix=shortage) 
 
     def clone(self) -> 'TimeTable':
         """Returns a clone of the TimeTable object"""

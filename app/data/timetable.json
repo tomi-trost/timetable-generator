@@ -1,0 +1,241 @@
+{
+    "id": 1,
+    "days": 7,
+    "shifts": 2, 
+    "demand": [
+        [2, 2],
+        [1, 2],
+        [1, 2],
+        [1, 2],
+        [2, 2],
+        [2, 3],
+        [3, 2]
+    ],
+    "workers": [
+        {
+            "name": "Ana",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0]
+            ],
+            "availability_count": 0,
+            "availability_range": { "min": 0, "max": 0 },
+            "rating": 5
+        },
+        {
+            "name": "Vivi",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0]
+            ],
+            "availability_count": 0,
+            "availability_range": { "min": 0, "max": 0 },
+            "rating": 5
+        },
+        {
+            "name": "Eva",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0]
+            ],
+            "availability_count": 0,
+            "availability_range": { "min": 0, "max": 0 },
+            "rating": 5
+        },
+        {
+            "name": "Sara",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0]
+            ],
+            "availability_count": 0,
+            "availability_range": { "min": 0, "max": 0 },
+            "rating": 5
+        },
+        {
+            "name": "Beni",
+            "availability": [
+                [1, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [1, 0],
+                [1, 0]
+            ],
+            "availability_count": 3,
+            "availability_range": { "min": 1, "max": 2 },
+            "rating": 6
+        },
+        {
+            "name": "Domen",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [1, 0],
+                [0, 0],
+                [0, 1],
+                [0, 1],
+                [0, 0]
+            ],
+            "availability_count": 3,
+            "availability_range": { "min": 3, "max": 4 },
+            "rating": 6
+        },
+        {
+            "name": "Dragana",
+            "availability": [
+                [0, 0],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1]
+            ],
+            "availability_count": 12,
+            "availability_range": { "min": 3, "max": 4 },
+            "rating": 6
+        },
+        {
+            "name": "Enej",
+            "availability": [
+                [0, 0],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 0],
+                [0, 0]
+            ],
+            "availability_count": 9,
+            "availability_range": { "min": 3, "max": 4 },
+            "rating": 6
+        },
+        {
+            "name": "Jaka",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 1],
+                [0, 0],
+                [0, 0],
+                [0, 0]
+            ],
+            "availability_count": 1,
+            "availability_range": { "min": 1, "max": 1 },
+            "rating": 5
+        },
+        {
+            "name": "Jerca",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 1],
+                [0, 0],
+                [0, 1],
+                [0, 0]
+            ],
+            "availability_count": 2,
+            "availability_range": { "min": 1, "max": 2 },
+            "rating": 6
+        },
+        {
+            "name": "Kenan",
+            "availability": [
+                [1, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [1, 0]
+            ],
+            "availability_count": 2,
+            "availability_range": { "min": 1, "max": 2 },
+            "rating": 6
+        },
+        {
+            "name": "Matjaz",
+            "availability": [
+                [1, 1],
+                [1, 0],
+                [0, 0],
+                [1, 1],
+                [1, 1],
+                [0, 0],
+                [1, 1]
+            ],
+            "availability_count": 9,
+            "availability_range": { "min": 1, "max": 3 },
+            "rating": 6
+        },    
+        {
+            "name": "Melisa",
+            "availability": [
+                [0, 0],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1]
+            ],
+            "availability_count": 12,
+            "availability_range": { "min": 3, "max": 4 },
+            "rating": 6
+        },
+        {
+            "name": "Nika",
+            "availability": [
+                [0, 0],
+                [0, 1],
+                [0, 1],
+                [0, 1],
+                [1, 1],
+                [1, 1],
+                [1, 1]
+            ],
+            "availability_count": 9,
+            "availability_range": { "min": 3, "max": 4 },
+            "rating": 5
+        },
+        {
+            "name": "Sasa",
+            "availability": [
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 0],
+                [0, 1],
+                [0, 1],
+                [0, 1]
+            ],
+            "availability_count": 3,
+            "availability_range": { "min": 3, "max": 3 },
+            "rating": 5
+        }
+    ]
+}

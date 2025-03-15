@@ -57,8 +57,8 @@ class TimeSlotMatrixResources(TimeSlotMatrix):
         ts_index = self._getMatrixIndex(timeslot)
         self.matrix[ts_index] -= 1
 
-    def count(self) -> int:
-        """Count the number of slots that are labled as available"""
+    def sum(self) -> int:
+        """Sums all of the resources in the time slot matrix"""
         return self.matrix.sum()
     
     def is_active(self, timeslot: TimeSlot) -> bool:

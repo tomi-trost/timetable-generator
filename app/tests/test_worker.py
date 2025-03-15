@@ -33,7 +33,7 @@ def test_worker_schedule_matrix():
     TIMESLOT_MATRIX_DIMENSIONS = (7, 2)
 
     availability_matrix, shift_pool, timeslots = generate_availability_matrix(*TIMESLOT_MATRIX_DIMENSIONS)
-    worker = Worker(name='Janez Novak', availability=availability_matrix, availability_range=(1, 2))
+    worker = Worker(name='Janez Novak', availability=availability_matrix, availability_range=(1, 2), rating=5)
 
     worker.assign(timeslots[0])
     
@@ -48,7 +48,7 @@ def test_worker():
 
     availability_matrix, shift_pool, timeslots = generate_availability_matrix(7, 2)
 
-    worker = Worker(name='Janez Novak', availability=availability_matrix, availability_range=(1, 2))
+    worker = Worker(name='Janez Novak', availability=availability_matrix, availability_range=(1, 2), rating=5)
 
     worker.assign(timeslot=timeslots[0])
     worker.assign(timeslot=timeslots[1])

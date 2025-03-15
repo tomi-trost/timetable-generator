@@ -62,7 +62,7 @@ def generate_worker_pool(timeslot_pool: TimeSlotPool) -> WorkerPool:
             raise ValueError("This time slot is not in the timeslot pool")
         availability = TimeSlotMatrixBinary(days=days, shifts=shifts)
         availability.put(timeslot)
-        worker = Worker(name=worker_name, availability=availability, availability_range=(1, 1))
+        worker = Worker(name=worker_name, availability=availability, availability_range=(1, 1), rating=5)
         worker_pool.add_worker(worker)
 
     return worker_pool

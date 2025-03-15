@@ -18,19 +18,33 @@ class TimeSlotMatrixBinary(TimeSlotMatrix):
         shifts (int): The number of shifts per day.
     """
 
-    def __init__(self, days: int , shifts: int):
+    def __init__(self, days: int = None, shifts: int = None, matrix: np.ndarray = None):
         """
         Initializes a TimeSlotMatrixBinary object.
 
         Args:
             days (int): The number of days.
             shifts (int): The number of shifts per day.
+            matrix (np.ndarray, optional): A predefined matrix to use.
 
-        The matrix is initialized as a 2D NumPy array filled with zeros.
+
+        If a matrix is provided, its dimensions are used for days and shifts.
+        Otherwise, a zero-initialized matrix is created based on the days and shifts provided.
         """
-        self.matrix = np.zeros((days, shifts))
-        self.days = days
-        self.shifts = shifts
+        if matrix is not None:
+            if not isinstance(matrix, np.ndarray):
+                raise ValueError("Matrix must be a NumPy array.")
+            if matrix.ndim != 2:
+                raise ValueError("Matrix must be a 2D array.")
+            
+            self.matrix = matrix
+            self.days, self.shifts = matrix.shape  # Extract dimensions from the matrix
+        elif days is not None and shifts is not None:
+            self.matrix = np.zeros((days, shifts))
+            self.days = days
+            self.shifts = shifts
+        else:
+            raise ValueError("Either provide days and shifts, or a matrix.")
 
 
     def put(self, timeslot: TimeSlot):

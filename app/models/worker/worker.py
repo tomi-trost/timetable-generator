@@ -14,6 +14,7 @@ class Worker:
         availability (TimeSlotMatrixBinary): A binary matrix indicating the time slots the worker is available for.
         assigned (TimeSlotMatrixBinary): A binary matrix indicating the time slots that have been assigned to the worker.
         availability_range (tuple[int, int]): Minimum and maximum number of timeslots a worker wants to be assigned.
+        rating (int): An integer value representing how good a worker is
     """
 
     class AvailabilityRange:
@@ -38,15 +39,17 @@ class Worker:
         self,
         name: str,
         availability: TimeSlotMatrixBinary,
-        availability_range: tuple[int, int]
+        availability_range: tuple[int, int],
+        rating: int,
     ) -> None:
         """
         Initializes a Worker object.
 
-        Args:
+        Args:b
             name (str): Worker's name
             availability (TimeSlotMatrixBinary): Time slots for which the worker is available.
             availability_range (tuple[int, int]): Minimum and maximum number of timeslots a worker wants to be assigned.
+            rating (int): An integer value representing how good a worker is.
 
         Assigned matrix is generated based on the dimensions of the availability matrix.
         """
@@ -56,6 +59,8 @@ class Worker:
         self.availability = availability
         self.assigned = TimeSlotMatrixBinary(*availability.get_dimensions())
         self.availability_range = Worker.AvailabilityRange(*availability_range)
+        self.rating = rating
+    
     
     @property
     def cnt(self) -> int:

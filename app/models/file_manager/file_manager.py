@@ -13,29 +13,29 @@ class FileManager:
         """Reads a json file and returns a TimeTable object"""
         try: 
             with open(file_path, "r") as file:
+                
                 timetable_data = json.load(file)
+
+                # Read time table demand
+                demand = np.array(timetable_data["demand"])
+                worker_demand = TimeSlotMatrixResources(matrix=demand)
+
+                # Read worker availabilities
+                worker_pool = WorkerPool()
+                worker_pool.add_workers([
+                    Worker(
+                        name=worker["name"],
+                        availability=TimeSlotMatrixBinary(matrix=np.array(worker["availability"])),
+                        availability_range=(worker["availability_range"]["min"], worker["availability_range"]["max"]),
+                        rating=worker["rating"]
+                    )
+                    for worker in timetable_data["workers"]
+                ])
+
+                return TimeTable(worker_demand=worker_demand, worker_pool=worker_pool)
+            
             print("JSON loaded successfully:", timetable_data)
         except FileNotFoundError:
             print("Error: File not found.")
         except json.JSONDecodeError:
             print("Error: Invalid JSON format.")
-
-        # Read time table demand
-        demand = np.array(timetable_data["demand"])
-        worker_demand = TimeSlotMatrixResources(matrix=demand)
-
-        # Read worker availabilities
-        worker_pool = WorkerPool()
-        worker_pool.add_workers([
-            Worker(
-                name=worker["name"],
-                availability=TimeSlotMatrixBinary(matrix=np.array(worker["availability"])),
-                availability_range=(worker["availability_range"]["min"], worker["availability_range"]["max"]),
-                rating=worker["rating"]
-            )
-            for worker in timetable_data["workers"]
-        ])
-
-        return TimeTable(worker_demand=worker_demand, worker_pool=worker_pool)
-
-        

@@ -10,7 +10,7 @@ from app.models.worker.worker_pool import Worker
 class FileManager:
 
     def read_timetable(file_path: str = "app/data/timetable.json") -> TimeTable:
-        
+        """Reads a json file and returns a TimeTable object"""
         try: 
             with open(file_path, "r") as file:
                 timetable_data = json.load(file)

@@ -39,6 +39,16 @@ class WorkerPool:
             raise ValueError("A worker is already in the worker pool.")
         self.workers.add(worker)
 
+    def add_workers(self, workers: list[Worker]) -> None:
+        """Adds a list of worker to the WorkerPool set"""
+        new_workers = set(workers)
+        existing_workers = self.workers
+
+        if existing_workers & new_workers:  # Check if any worker already exists
+            raise ValueError("One or more workers are already in the worker pool.")
+        
+        existing_workers.update(new_workers)
+
     def get_supply_matrix(self) -> np.ndarray:
         """Returns a resource matrix for all of the workers"""
         worker_availabilities = [worker.availability.matrix for worker in self.workers]

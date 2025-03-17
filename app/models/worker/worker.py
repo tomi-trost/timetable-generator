@@ -17,6 +17,8 @@ class Worker:
         rating (int): An integer value representing how good a worker is
     """
 
+    max_rating = 10 # Static atribute
+
     class AvailabilityRange:
         """
         Representation of time slot quantity the worker preferes to be assigned for.

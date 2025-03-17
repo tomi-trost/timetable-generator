@@ -29,7 +29,7 @@ class FileManager:
                         availability_range=(worker["availability_range"]["min"], worker["availability_range"]["max"]),
                         rating=worker["rating"]
                     )
-                    for worker in timetable_data["workers"]
+                    for worker in timetable_data["workers"] if worker["availability_count"] > 0
                 ])
 
                 return TimeTable(worker_demand=worker_demand, worker_pool=worker_pool)
